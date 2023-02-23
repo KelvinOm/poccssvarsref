@@ -139,4 +139,11 @@ code {
   --ads-old-color-black: #000000;
 
   --ads-orange-accent: #ffefdb;
+
+  --button-padding: 0.5rem;
+  --button-margin: 2px;
+  --button-border-width: 1px;
+  --button-bg: var(--ads-color-orange-500);
+  --button-font-size: 1rem;
+  --button-color: var(--ads-color-black-0);
 }

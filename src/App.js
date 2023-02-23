@@ -1,17 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Button from './button';
 
 
 function App() {
-
-  const [buttonCount, setButtonCount] = useState(5);
+  const [buttonCount, setButtonCount] = useState(10000);
   const [padding, setPadding] = useState("0.5rem");
   const [borderWidth, setBorderWidth] = useState("1px");
   const [buttonColor, setButtonColor] = useState("var(--ads-color-orange-500)");
   const [fontSize, setFontSize] = useState("1rem");
   const [margin, setMargin] = useState("2px");
   const [color, setColor] = useState("var(--ads-color-black-0)");
+
+  const buttonRefs = useRef([])
+
+  useEffect(() => {
+    buttonRefs.current.forEach(item => {
+      item.style.setProperty('--button-padding', padding)
+    })
+  },[padding])
+
+  useEffect(() => {
+    buttonRefs.current.forEach(item => {
+      item.style.setProperty('--button-border-width', borderWidth)
+    })
+  },[borderWidth])
+
+  useEffect(() => {
+    buttonRefs.current.forEach(item => {
+      item.style.setProperty('--button-bg', buttonColor)
+    })
+  },[buttonColor])
+
+  useEffect(() => {
+    buttonRefs.current.forEach(item => {
+      item.style.setProperty('--button-font-size', fontSize)
+    })
+  },[fontSize])
+
+  useEffect(() => {
+    buttonRefs.current.forEach(item => {
+      item.style.setProperty('--button-margin', margin)
+    })
+  },[margin])
+
+  useEffect(() => {
+    buttonRefs.current.forEach(item => {
+      item.style.setProperty('--button-color', color)
+    })
+  },[color])
 
   const buttons = [];
   for(let i = 0; i < buttonCount; i++) {
@@ -36,7 +73,7 @@ function App() {
   return (
     <div className="main">
       <div className="left-section">
-        <h1>Buttons</h1>
+        <h1>CSS vars refs buttons</h1>
         <div className='btn-container'>
           {buttons}
         </div>
@@ -54,6 +91,7 @@ function App() {
         <br/>
          <button onClick={() => setButtonCount(buttonCount + 1000)}>Render 1000 buttons</button>
         <br/>
+
         <label>Padding</label>
         <select value={padding} onChange={(e) => setPadding(e.target.value)}>
           <option value="0">Padding</option>
@@ -62,7 +100,9 @@ function App() {
           <option value="1.5rem">1.5rem</option>
           <option value="2rem">2rem</option>
         </select>
+
         <br/>
+
         <label>Border Width</label>
         <select value={borderWidth} onChange={(e) => setBorderWidth(e.target.value)}>
           <option value="0">Border Width</option>
@@ -70,7 +110,9 @@ function App() {
           <option value="2px">2 px</option>
           <option value="3px">3 px</option>
         </select>
+
         <br/>
+
         <label>Button Color</label>
         <select value={buttonColor} onChange={(e) => setButtonColor(e.target.value)}>
           <option value="white">Button Color</option>
@@ -79,7 +121,9 @@ function App() {
           <option value="green">Green</option>
           <option value="red">Red</option>
         </select>
+
         <br/>
+
         <label>Font Size</label>
         <select value={fontSize} onChange={(e) => setFontSize(e.target.value)}>
           <option value="0">Font Size</option>
@@ -87,7 +131,9 @@ function App() {
           <option value="1.5rem">1.5 rem</option>
           <option value="2rem">2 rem</option>
         </select>
+
         <br/>
+
         <label>Margin</label>
         <select value={margin} onChange={(e) => setMargin(e.target.value)}>
           <option value="0">Margin</option>
@@ -95,7 +141,9 @@ function App() {
           <option value="4px">4 px</option>
           <option value="6px">6 px</option>
         </select>
+
         <br/>
+
         <label>Color</label>
         <select value={color} onChange={(e) => setColor(e.target.value)}>
           <option value="white">Color</option>
